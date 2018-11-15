@@ -11,61 +11,62 @@
 
   <body>
   <!--Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light blue lighten-1">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">FileStoreX</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">Navbar</a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/">Encrpyt/Decrypt</a>
+          </li>
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/">Upload a file</a>
+          </li>
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/">My Files</a>
+          </li>
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/">Messages</a>
+          </li>
+        </ul>
 
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
 
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/user/login">Login</a>
+          </li>
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/user/register">Register</a>
+          </li>
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="/Account/Login">Log out</a>
+          </li>
+        </ul>
 
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-
-      </ul>
-      <!-- Links -->
-
-      <form class="form-inline">
-        <div class="md-form my-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        </div>
-      </form>
+      </div>
     </div>
-    <!-- Collapsible content -->
-
   </nav>
 
-  <%= yield %>
 
 
+
+  <div class="container body-content">
+    <%= yield %>
+    <hr />
+    <footer class="page-footer font-small cyan darken-3">
+
+      <div class="footer-copyright text-center py-3">
+        © 2018 Copyright:
+        <a href="https://github.com/pmate955/FileStoreX"> File Store X project - SZTE - Mate Pinter </a>
+      </div>
+
+    </footer>
+  </div>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
