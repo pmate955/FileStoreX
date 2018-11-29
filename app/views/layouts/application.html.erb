@@ -37,15 +37,18 @@
 
 
         <ul class="navbar-nav m-auto">
+          <%if !user_signed_in? %>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/user/login">Login</a>
+            <a class="nav-link" href="/users/sign_in">Login</a>
           </li>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/user/register">Register</a>
+            <a class="nav-link" href="/users/sign_up">Register</a>
           </li>
+          <%else%>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/Account/Login">Log out</a>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
           </li>
+          <%end%>
         </ul>
 
       </div>
