@@ -40,7 +40,7 @@ protected
     contents = IO.binread(upload['datafile'].path)
     puts(contents)
     for pos in 0...contents.length
-      puts contents[pos].
+      puts contents[pos]
     end
       #File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
   end
