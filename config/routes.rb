@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'file/upload'
   get 'user/login'
   get 'user/register'
   devise_for :users, :controllers => { registrations: 'users/registrations' }

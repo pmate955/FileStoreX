@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>FileStoreX</title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -21,8 +22,9 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
         <ul class="navbar-nav m-auto">
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/">Encrpyt/Decrypt</a>
+            <a class="nav-link" href="/file/upload">Encrpyt/Decrypt</a>
           </li>
+          <%if user_signed_in? %>
           <li class="nav-item m-auto">
             <a class="nav-link" href="/">Upload a file</a>
           </li>
@@ -32,6 +34,7 @@
           <li class="nav-item m-auto">
             <a class="nav-link" href="/">Messages</a>
           </li>
+          <%end%>
         </ul>
 
 
@@ -59,6 +62,7 @@
 
 
   <div class="container body-content">
+    <br><br><br>
     <%= yield %>
     <hr />
     <footer class="page-footer font-small cyan darken-3">
@@ -67,12 +71,10 @@
         © 2018 Copyright:
         <a href="https://github.com/pmate955/FileStoreX"> File Store X project - SZTE - Mate Pinter </a>
       </div>
-
     </footer>
   </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
 
   </body>
 </html>

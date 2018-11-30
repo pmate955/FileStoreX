@@ -1,0 +1,31 @@
+<div id="form-con" class = "container mt-2">
+  <div class="row">
+    <div class="col">
+      <h1 class="mx-auto my-0">Upload your file! </h1>
+        <%= form_tag("/upload", method: "post") do %>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">What do you want?</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Encrypt</option>
+            <option>Decrypt</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Your file (maximum 50 MB)</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Password</label>
+          <input type="password" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Password again</label>
+          <input type="password" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
