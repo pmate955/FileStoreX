@@ -21,8 +21,8 @@ class FileController < ApplicationController
     end
   end
 
-  def show(index)
-
+  def show
+    @file_id = params[:file_id]
   end
 
   def downloadFile
@@ -59,6 +59,21 @@ class FileController < ApplicationController
     end
     fileItem.delete
     redirect_to '/user/showFiles'
+  end
+
+  def tryPass
+    fileItem = FileItem.find(params[:file_id])
+    if fileItem.password == params[:passw1]
+      file_path = "#{Rails.root}/" + fileItem.path
+      # send_file "#{Rails.root}/public/data/" + params[:filename], type: "application/bin", x_sendfile: true
+      File.open(file_path, 'r') do |f|
+        send_data f.read, type: "application/bin", :filename => File.basename(fileItem.path)
+      end
+      fileItem.status = 'Downloaded'
+      fileItem.save
+    else
+      redirect_back fallback_location: '/file/show',  flash: {result: 'Bad password'}
+    end
   end
 
 

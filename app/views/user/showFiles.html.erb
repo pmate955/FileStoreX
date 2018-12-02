@@ -10,6 +10,7 @@
       <th>File name</th>
       <th>Password</th>
       <th>Status</th>
+      <th>URL</th>
       <th>Delete</th>
       </thead>
       <tbody>
@@ -19,6 +20,7 @@
           <td><%=l.path%></td>
           <td><%=l.password%></td>
           <td><%=l.status%></td>
+          <td><%= link_to 'Link to file', {:controller => "file", :action => "show", :file_id => l.id}%></td>
           <td><%= button_to 'Delete', {:controller => "file", :action => "deleteFile", :file_id => l.id, :user_id=> session[:user_id]} , method: :post%></td>
         </tr>
       <%end%>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'file/uploadUserFile'
   post 'file/uploadUserFilePost'
 post 'file/deleteFile'
+  get 'file/show'
+  post 'file/tryPass'
   get 'user/login'
   get 'user/register'
   get 'user/showFiles'

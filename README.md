@@ -1,24 +1,10 @@
-# README
+# File Store X
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Small Ruby on Rails app for an online file encryptor with XOR coding. (This will be updated soon with better
+encrypting algorythm)
+There are 2 options:
+ * Anonymus user can upload a file and encrypt/decrypt, and download the result, but the file will be deleted from server after download.
+ * Registrated user can upload maximum 5 files to server, and send the file as link. The receiver can upload the
+ file with a password
+ * Extra function will be available once (Download encrypted file as PNG)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
