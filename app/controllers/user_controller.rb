@@ -1,9 +1,12 @@
 class UserController < ApplicationController
 
-  def login
-  end
 
-  def register
-    
+
+  def showFiles
+    if !user_signed_in?
+      redirect_to '/users/sign_in'
+    else
+      @list = current_user.File_Items
+    end
   end
 end

@@ -5,19 +5,17 @@ class FileController < ApplicationController
   def upload
   end
 
+
+
   def uploadFile
     if params[:passw1] == params[:passw2]
       if params[:isEncrypt] == '1'
         @value = saveFile(params[:selectedFile])
-
-      #  encryptFile(params[:selectedFile], params[:passw1])
-      #  puts(@lines)
       else
         value = saveFile(params[:selectedFile])
         index = value.index(".bin")
         @value = value[0...index]
       end
-
     else
       redirect_back fallback_location: '/file/upload',  flash: {result: 'Passwords are not same!'}
     end
@@ -35,6 +33,23 @@ class FileController < ApplicationController
     end
     File.delete(file_path)
   end
+
+  def uploadUserFile
+
+  end
+
+  def uploadUserFilePost
+    if params[:passw1] == params[:passw2]
+      path = saveUserFile(params[:selectedFile])
+      fileItem = FileItem.new(:path => path, :password => params[:passw1], :user_id => current_user.id)
+      fileItem.save()
+      redirect_to '/user/showFiles'
+    else
+      redirect_back fallback_location: '/file/uploadUserFile',  flash: {result: 'Passwords are not same!'}
+    end
+  end
+
+  
 
 protected
   def user_params
@@ -54,6 +69,17 @@ protected
       File.delete(Rails.root + path)
     end
     name + ".bin"
+  end
+
+  def saveUserFile(upload)
+    name = upload['datafile'].original_filename
+    directory = "public/data/" + current_user.id.to_s + "/"
+    unless File.directory?(directory)
+      FileUtils.mkdir_p(directory)
+    end
+    path = File.join(directory, name)
+    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+    return path
   end
 
 
