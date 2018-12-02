@@ -7,8 +7,9 @@ class FileController < ApplicationController
 
   def uploadFile
     if params[:passw1] == params[:passw2]
-      if params[:isEncrypt] == 'true'
-        saveFile(params[:selectedFile])
+      if params[:isEncrypt] == '1'
+        @value = saveFile(params[:selectedFile])
+
       #  encryptFile(params[:selectedFile], params[:passw1])
       #  puts(@lines)
       end
@@ -22,6 +23,9 @@ class FileController < ApplicationController
 
   end
 
+  def downloadFile(filename)
+    send_file "#{Rails.root}/public/data/" + filename, type: "application/bin", x_sendfile: true
+  end
 
 protected
   def user_params
@@ -37,13 +41,15 @@ protected
     path = File.join(directory, name)
     # write the file
    # puts(upload['datafile'].read)
-    contents = IO.binread(upload['datafile'].path)
-    puts(contents)
-    for pos in 0...contents.length
-      puts contents[pos]
-    end
-      #File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+      File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+    #result = IO::popen("java -jar FileEncoder.jar " + path + " " + params[:passw1] + " " + params[:isEncrypt])
+    Dir.chdir(Rails.root.to_s() + "/public/data/") do
+      retResult  = system("java -jar FileEncoder.jar " + name + " " + params[:passw1] + " " + params[:isEncrypt])
+      File.delete(Rails.root + path)
+    end #chdir
+    name + ".bin"
   end
+
 
   def encryptFile(file, pass)
     puts('Encrypt')

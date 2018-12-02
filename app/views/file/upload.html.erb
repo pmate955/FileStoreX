@@ -5,7 +5,7 @@
         <%= form_tag("/file/uploadFile", method: "post", multipart: true) do %>
         <div class="form-group">
           <label for="isEncrypt">What do you want?</label>
-          <%= select_tag(:isEncrypt, options_for_select([['Encrypt', true], ['Decrypt',  false]]), class:"form-control") %>
+          <%= select_tag(:isEncrypt, options_for_select([['Encrypt', 1], ['Decrypt',  2]]), class:"form-control") %>
         </div>
         <div class="form-group">
           <label for="selectedFile">Your file (maximum 50 MB)</label>

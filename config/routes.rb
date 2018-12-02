@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'file/upload'
   post 'file/uploadFile'
+  match 'downloadFile', to: 'file#downloadFile', as: 'download', via: :get
   get 'user/login'
   get 'user/register'
   devise_for :users, :controllers => { registrations: 'users/registrations' }
