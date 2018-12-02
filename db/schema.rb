@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_142141) do
+ActiveRecord::Schema.define(version: 2018_12_02_155947) do
 
   create_table "file_items", force: :cascade do |t|
     t.string "password"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_12_02_142141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.string "status", default: "Uploaded", null: false
     t.index ["user_id"], name: "index_File_Items_on_user_id"
   end
 

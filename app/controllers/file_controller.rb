@@ -39,6 +39,9 @@ class FileController < ApplicationController
   end
 
   def uploadUserFilePost
+    if current_user.File_Items.size > 5
+      redirect_back fallback_location: '/file/uploadUserFile',  flash: {result: 'You exceeded the file limit, maximum 5 files / user!'}
+    end
     if params[:passw1] == params[:passw2]
       path = saveUserFile(params[:selectedFile])
       fileItem = FileItem.new(:path => path, :password => params[:passw1], :user_id => current_user.id)
@@ -49,7 +52,16 @@ class FileController < ApplicationController
     end
   end
 
-  
+  def deleteFile
+    fileItem = FileItem.find(params[:file_id])
+    if fileItem.status == 'Uploaded'
+      File.delete(Rails.root + fileItem.path)
+    end
+    fileItem.delete
+    redirect_to '/user/showFiles'
+  end
+
+
 
 protected
   def user_params

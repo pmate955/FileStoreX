@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   match 'downloadFile', to: 'file#downloadFile', as: 'download', via: :get
   get 'file/uploadUserFile'
   post 'file/uploadUserFilePost'
-
+post 'file/deleteFile'
   get 'user/login'
   get 'user/register'
   get 'user/showFiles'
