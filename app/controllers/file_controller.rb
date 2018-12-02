@@ -28,7 +28,12 @@ class FileController < ApplicationController
   end
 
   def downloadFile
-    send_file "#{Rails.root}/public/data/" + params[:filename], type: "application/bin", x_sendfile: true
+    file_path = "#{Rails.root}/public/data/" + params[:filename]
+   # send_file "#{Rails.root}/public/data/" + params[:filename], type: "application/bin", x_sendfile: true
+    File.open(file_path, 'r') do |f|
+      send_data f.read, type: "application/bin", :filename => params[:filename]
+    end
+    File.delete(file_path)
   end
 
 protected
@@ -41,18 +46,13 @@ protected
   def saveFile(upload)
     name = upload['datafile'].original_filename
     directory = "public/data"
-    # create the file path
     path = File.join(directory, name)
-    # write the file
-   # puts(upload['datafile'].read)
-      File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
-    #result = IO::popen("java -jar FileEncoder.jar " + path + " " + params[:passw1] + " " + params[:isEncrypt])
+    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
     Dir.chdir(Rails.root.to_s() + "/public/data/") do
-      puts("java -jar FileEncoder.jar " + name + " " + params[:passw1] + " " + params[:isEncrypt])
       retResult  = system("java -jar FileEncoder.jar " + name + " " + params[:passw1] + " " + params[:isEncrypt])
       puts(retResult)
       File.delete(Rails.root + path)
-    end #chdir
+    end
     name + ".bin"
   end
 
