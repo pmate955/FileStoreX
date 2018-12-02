@@ -2,9 +2,15 @@
 <header class="masthead">
   <div class="container d-flex h-100 align-items-center">
     <div class="mx-auto text-center">
-      <h1 class="mx-auto my-0 text-uppercase">File Store X</h1>
-      <p class="text-grey-10 mx-auto mt-2 mb-5">Free file sharing and encrypting tool. You can encrypt your files with basic XOR algoríthm and send wherever you want, like GMail, Facebook. The receiver member can decode the file with password. Register fo more features, like send messages.</p>
-      <a href="/file/upload" class="btn btn-primary js-scroll-trigger">Upload a file</a>
+      <% if user_signed_in? %>
+          <h1 class="mx-auto my-0 text-uppercase">Welcome to File Store X</h1>
+          <p>You are now a member, so you can upload files, which are stay on the server until someone download them, and send messages</p>
+          <a href="/file/uploadUserFile" class="btn btn-primary js-scroll-trigger">Upload a file</a>
+      <%else %>
+        <h1 class="mx-auto my-0 text-uppercase">File Store X</h1>
+        <p class="text-grey-10 mx-auto mt-2 mb-5">Free file sharing and encrypting tool. You can encrypt your files with basic XOR algoríthm and send wherever you want, like GMail, Facebook. The receiver member can decode the file with password. Register fo more features, like send messages.</p>
+        <a href="/file/upload" class="btn btn-primary js-scroll-trigger">Upload a file</a>
+      <%end%>
     </div>
   </div>
   </header>
