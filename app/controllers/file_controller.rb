@@ -14,7 +14,7 @@ class FileController < ApplicationController
   def uploadFile
     @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
    # folder = @dbx.create_folder('/firstFolder')
-  #  @dbx.upload('/firstFolder/' + params[:selectedFile]['datafile'].original_filename, params[:selectedFile]['datafile'].read)
+    @dbx.upload('/firstFolder/' + params[:selectedFile]['datafile'].original_filename, params[:selectedFile]['datafile'].read)
     if params[:passw1] == params[:passw2]
       if params[:isEncrypt] == '1'
        @value = saveFile(params[:selectedFile])
