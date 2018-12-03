@@ -1,6 +1,10 @@
+require 'dropbox'
+
 class FileController < ApplicationController
   @uploadedFile
   @lines
+
+
 
   def upload
   end
@@ -8,9 +12,12 @@ class FileController < ApplicationController
 
 
   def uploadFile
+    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+   # folder = @dbx.create_folder('/firstFolder')
+  #  @dbx.upload('/firstFolder/' + params[:selectedFile]['datafile'].original_filename, params[:selectedFile]['datafile'].read)
     if params[:passw1] == params[:passw2]
       if params[:isEncrypt] == '1'
-        @value = saveFile(params[:selectedFile])
+       @value = saveFile(params[:selectedFile])
       else
         value = saveFile(params[:selectedFile])
         index = value.index(".bin")
@@ -26,12 +33,15 @@ class FileController < ApplicationController
   end
 
   def downloadFile
+    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+    file, body = @dbx.download('/firstFolder/' + params[:filename])
     file_path = "#{Rails.root}/public/data/" + params[:filename]
-   # send_file "#{Rails.root}/public/data/" + params[:filename], type: "application/bin", x_sendfile: true
-    File.open(file_path, 'r') do |f|
-      send_data f.read, type: "application/bin", :filename => params[:filename]
-    end
-    File.delete(file_path)
+
+   # File.open(body.to_s, 'r') do |f|
+      send_data body.to_s, type: "application/bin", :filename => params[:filename]
+   # end
+      @dbx.delete('/firstFolder/'+ params[:filename])
+      #File.delete(file_path)
   end
 
   def uploadUserFile
@@ -94,6 +104,15 @@ protected
       retResult  = system("java -jar FileEncoder.jar " + name + " " + params[:passw1] + " " + params[:isEncrypt])
       puts(retResult)
       File.delete(Rails.root + path)
+      if params[:isEncrypt] == '1'
+         @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
+         File.delete(name + '.bin')
+      else
+        index = name.index(".bin")
+        name2 = name[0...index]
+        @dbx.upload('/firstFolder/' + name2, File.read(name2))
+        File.delete(name2)
+      end
     end
     name + ".bin"
   end
@@ -109,18 +128,5 @@ protected
     return path
   end
 
-
-  def encryptFile(file, pass)
-    puts('Encrypt')
-    @uploadedFile = file
-    if  @uploadedFile.respond_to?(:read)
-      @lines = file_data.read
-    elsif  @uploadedFile.respond_to?(:path)
-      @lines = File.read(file_data.path)
-    else
-      logger.error "Bad file_data: #{ @uploadedFile.class.name}: #
-    {@filename.inspect}"
-    end
-  end
 
 end
