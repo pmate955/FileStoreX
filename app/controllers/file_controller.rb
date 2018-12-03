@@ -99,19 +99,19 @@ protected
     name = upload['datafile'].original_filename
     directory = "public/data"
     path = File.join(directory, name)
-    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+    #File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
     Dir.chdir(Rails.root.to_s() + "/public/data/") do
       retResult  = system("java -jar FileEncoder.jar " + name + " " + params[:passw1] + " " + params[:isEncrypt])
       puts(retResult)
-      File.delete(Rails.root + path)
+     # File.delete(Rails.root + path)
       if params[:isEncrypt] == '1'
-         @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
-         File.delete(name + '.bin')
+         #@dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
+         #File.delete(name + '.bin')
       else
         index = name.index(".bin")
         name2 = name[0...index]
-        @dbx.upload('/firstFolder/' + name2, File.read(name2))
-        File.delete(name2)
+       # @dbx.upload('/firstFolder/' + name2, File.read(name2))
+      #  File.delete(name2)
       end
     end
     name + ".bin"
