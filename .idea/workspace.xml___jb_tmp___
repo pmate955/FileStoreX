@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a42779c-43f6-4312-b26e-8cd4190f34cc" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/data/1/feladatGit.txt.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/data/1/file2.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/data/2/file2.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/data/feladat.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/data/feladat.txt.bin" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/data/feladatGit.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/file_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/file_controller.rb" />
     </list>
@@ -33,38 +39,8 @@
       <file leaf-file-name="file_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/file_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="feladat.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/data/feladat.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="feladat.txt.bin" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/data/feladat.txt.bin">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="feladatGit.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/data/feladatGit.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="301">
+              <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -657,12 +633,12 @@
       <workItem from="1543869691536" duration="1011000" />
       <workItem from="1543876686572" duration="3552000" />
       <workItem from="1543913524596" duration="2090000" />
-      <workItem from="1543923202660" duration="1832000" />
+      <workItem from="1543923202660" duration="1873000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64113000" />
+    <option name="totallyTimeSpent" value="64154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="1158" height="866" extended-state="6" />
@@ -1029,8 +1005,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/file_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+        <state relative-caret-position="301">
+          <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
           <folding />
         </state>
       </provider>

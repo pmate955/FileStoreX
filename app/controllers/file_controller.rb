@@ -35,11 +35,7 @@ class FileController < ApplicationController
   def downloadFile
     @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
     file, body = @dbx.download('/firstFolder/' + params[:filename])
-    file_path = "#{Rails.root}/public/data/" + params[:filename]
-
-   # File.open(body.to_s, 'r') do |f|
       send_data body.to_s, type: "application/bin", :filename => params[:filename]
-   # end
       @dbx.delete('/firstFolder/'+ params[:filename])
       #File.delete(file_path)
   end
@@ -53,6 +49,7 @@ class FileController < ApplicationController
       redirect_back fallback_location: '/file/uploadUserFile',  flash: {result: 'You exceeded the file limit, maximum 5 files / user!'}
     end
     if params[:passw1] == params[:passw2]
+      @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
       path = saveUserFile(params[:selectedFile])
       fileItem = FileItem.new(:path => path, :password => params[:passw1], :user_id => current_user.id)
       fileItem.save()
@@ -64,9 +61,8 @@ class FileController < ApplicationController
 
   def deleteFile
     fileItem = FileItem.find(params[:file_id])
-    if fileItem.status == 'Uploaded'
-      File.delete(Rails.root + fileItem.path)
-    end
+    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+    @dbx.delete(fileItem.path)
     fileItem.delete
     redirect_to '/user/showFiles'
   end
@@ -74,11 +70,10 @@ class FileController < ApplicationController
   def tryPass
     fileItem = FileItem.find(params[:file_id])
     if fileItem.password == params[:passw1]
-      file_path = "#{Rails.root}/" + fileItem.path
-      # send_file "#{Rails.root}/public/data/" + params[:filename], type: "application/bin", x_sendfile: true
-      File.open(file_path, 'r') do |f|
-        send_data f.read, type: "application/bin", :filename => File.basename(fileItem.path)
-      end
+      file_path = fileItem.path
+      @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+      file, body = @dbx.download(file_path)
+      send_data body.to_s, type: "application/bin", :filename => File.basename(fileItem.path)
       fileItem.status = 'Downloaded'
       fileItem.save
     else
@@ -128,12 +123,25 @@ protected
 
   def saveUserFile(upload)
     name = upload['datafile'].original_filename
-    directory = "public/data/" + current_user.id.to_s + "/"
-    unless File.directory?(directory)
-      FileUtils.mkdir_p(directory)
-    end
+    directory = "/firstFolder/" + current_user.id.to_s + "/"
+    # unless File.directory?(directory)
+    #   FileUtils.mkdir_p(directory)
+    # end
     path = File.join(directory, name)
-    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+    #File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+    list = @dbx.list_folder('/firstFolder/')
+    findFolder = false
+    list.each do |item|
+      if item.name == current_user.id.to_s
+        findFolder = true
+        break
+      end
+    end
+    if findFolder == false
+      @dbx.create_folder("/firstFolder/" + current_user.id.to_s)
+    end
+    @dbx.upload(path, upload['datafile'].read)
     return path
   end
 
