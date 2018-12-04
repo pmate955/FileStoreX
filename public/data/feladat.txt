@@ -1,0 +1,24 @@
+1. Írasd ki az aktuális könyvtárat, nézd meg hol vagy!
+2. Keresd meg az a felhasználói mappádat, és hozz létre egy "elsőmappa" nevű mappát!
+3. Lépj bele, és hozz létre egy üres file1.txt nevű fájlt!
+4. Echo parancs segítségével írd bele ezt: "Szeretjük a linuxot :D"
+5. Listázd ki a könyvtár tartalmát!
+6. Hozz létre egy "masodikmappa" nevű mappát az "elsőmappába"!
+7. Másold át a file1.txt-t ebbe az új mappába!
+8.  Lépj vissz az "elsőmmapába", és hozz létre benne egy "harmadikmappa" nevű mappát, és abba egy üres állományt! (Neve tetszőleges)
+9. Töröld ki ezt a "harmadikmappa" nevű mappát!
+10. Hozzunk létre az "elsőmappa" nevű mappába egy file2.txt nevű fájlt, abba írjuk bele, hogy "Ez egy txt", másoljuk át a "másodikmappa" nevű mappába!
+11. írasd ki konzolra a file1.txt tartalmát!
+12. Hozzunk létre az "elsőmappa" nevű mappába több mappát, nevük: egy, ketto, harom, negy
+13  Ezekbe a mappákba pedig "egy.txt", "ketto.txt", és "Harom.txt" kerüljönm, és beléjük "Szoveg" szöveg.
+14. Másoljuk át a "ketto" mappát az "egy" mappába!
+15. Töröljük ki a régi "ketto" mappát!
+16. Írj egy file5.txt-be a cat parancs segítségével a
+következő szöveget: 
+"Elso sor"
+"Masodik sor" 
+"Harmadik sor"
+17. Fűzd hozzá (> -felülírás, >> - hozzáfűzés) a következőket, szintén cat-el:
+"Negyedik sor"
+
+

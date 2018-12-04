@@ -14,7 +14,7 @@ class FileController < ApplicationController
   def uploadFile
     @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
    # folder = @dbx.create_folder('/firstFolder')
-    @dbx.upload('/firstFolder/' + params[:selectedFile]['datafile'].original_filename, params[:selectedFile]['datafile'].read)
+   # @dbx.upload('/firstFolder/' + params[:selectedFile]['datafile'].original_filename, params[:selectedFile]['datafile'].read)
     if params[:passw1] == params[:passw2]
       if params[:isEncrypt] == '1'
        @value = saveFile(params[:selectedFile])
@@ -99,19 +99,28 @@ protected
     name = upload['datafile'].original_filename
     directory = "public/data"
     path = File.join(directory, name)
-    #File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
-    Dir.chdir(Rails.root.to_s() + "/public/data/") do
-      retResult  = system("java -jar FileEncoder.jar " + name + " " + params[:passw1] + " " + params[:isEncrypt])
-      puts(retResult)
-     # File.delete(Rails.root + path)
+    data = File.read(upload['datafile'].path)
+    output = ''.bytes.to_a
+    key = params[:passw1].bytes.to_a
+    index = 0
+    oIndex = 0
+    data.each_byte do |byte|
+     output[oIndex] = byte ^ key[index]
+      index += 1
+      oIndex += 1
+      if index == key.size
+        index = 0
+      end
+    end
+    Dir.chdir("public/data/") do
       if params[:isEncrypt] == '1'
-         #@dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
-         #File.delete(name + '.bin')
+        File.open(name+ '.bin', "wb") { |f| f.write(output.pack('c*'))}
+        @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
       else
         index = name.index(".bin")
         name2 = name[0...index]
-       # @dbx.upload('/firstFolder/' + name2, File.read(name2))
-      #  File.delete(name2)
+       File.open(name2, "wb") { |f| f.write(output.pack('c*'))}
+        @dbx.upload('/firstFolder/' + name2, File.read(name2))
       end
     end
     name + ".bin"
