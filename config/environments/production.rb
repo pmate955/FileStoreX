@@ -63,7 +63,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "FileStoreX_#{Rails.env}"
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'filestorex.herokuapp.com', port: 3000 }
+  config.reconfirmable = false
+  config.action_mailer.default_url_options = { host: 'filestorex.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
