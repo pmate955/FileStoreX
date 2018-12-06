@@ -30,12 +30,23 @@ class FileController < ApplicationController
 
   def show
     @file_id = params[:file_id]
+    unless fileItem = FileItem.find_by(id: params[:file_id])
+      redirect_to('/file/not_found')
+    end
+  end
+
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
   end
 
   def downloadFile
     @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
     file, body = @dbx.download('/firstFolder/' + params[:filename])
-      send_data body.to_s, type: "application/bin", :filename => params[:filename]
+      send_data body.to_s, :filename => params[:filename]
       @dbx.delete('/firstFolder/'+ params[:filename])
       #File.delete(file_path)
   end
@@ -67,13 +78,19 @@ class FileController < ApplicationController
     redirect_to '/user/showFiles'
   end
 
+  def not_found
+
+  end
+
   def tryPass
-    fileItem = FileItem.find(params[:file_id])
+    unless fileItem = FileItem.find(params[:file_id])
+      redirect_to '/file/not_found'
+    end
     if fileItem.password == params[:passw1]
       file_path = fileItem.path
       @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
       file, body = @dbx.download(file_path)
-      send_data body.to_s, type: "application/bin", :filename => File.basename(fileItem.path)
+      send_data body.to_s, :filename => File.basename(fileItem.path)
       fileItem.status = 'Downloaded'
       fileItem.save
     else

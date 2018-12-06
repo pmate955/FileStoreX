@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 post 'file/deleteFile'
   get 'file/show'
   post 'file/tryPass'
+  get 'file/not_found'
   get 'user/login'
   get 'user/register'
   get 'user/showFiles'
