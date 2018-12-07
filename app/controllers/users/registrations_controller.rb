@@ -10,9 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     record = Statistic.find_by(dateTime: Date.today)
+     record.increment(:newUsers, 1)
+     record.save
+     super
+   end
 
   # GET /resource/edit
   # def edit
@@ -42,7 +45,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-
      #params.require(:user).permit(:firstName, :lastName, :email, :password, :password_confirmation)
      devise_parameter_sanitizer.permit(:sign_up, keys: [:firstName, :lastName, :email, :password, :password_confirmation])
      #devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])

@@ -65,7 +65,9 @@
     <%= yield %>
     <hr />
     <footer class="page-footer font-small cyan darken-3">
-      <div class="text-center text-dark"> We have <%=User.count%> users now!<br><a href='https://www.symptoma.ro/'>Symptoma.com</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=ece9cff480b536a8de2442f995f5eb6add8f70c6'></script>
+      <div class="text-center text-dark"> We have <%=User.count%> users now! Page loads today: <%= @stat.visits %><br> New users today: <%= @stat.newUsers %>
+        <br>User visits: <%= @stat.userVisit %>
+        <a href='https://www.symptoma.ro/'>Symptoma.com</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=ece9cff480b536a8de2442f995f5eb6add8f70c6'></script>
         <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/451581/t/5"></script></div>
       <div class="footer-copyright text-center py-3">
         © 2018 Copyright:

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dateTime: MyString
+  visits: 1
+  userVisit: 1
+  newUsers: 1
+
+two:
+  dateTime: MyString
+  visits: 1
+  userVisit: 1
+  newUsers: 1
