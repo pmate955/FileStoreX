@@ -58,6 +58,20 @@ class FileController < ApplicationController
       #File.delete(file_path)
   end
 
+  def downloadEnc
+    unless fileItem = FileItem.find(params[:file_id])
+      redirect_to '/file/not_found'
+    end
+    file_path = fileItem.path
+    if file_path.end_with?'.bin'
+        @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+        file, body = @dbx.download(file_path)
+        send_data body.to_s, :filename => File.basename(fileItem.path)
+    end
+    #redirect_to '/user/showFiles'
+
+  end
+
   def uploadUserFile
 
   end
