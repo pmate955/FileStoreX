@@ -5,7 +5,7 @@
       <%= form_tag("/file/uploadUserFilePost", method: "post", multipart: true) do %>
           <div class="form-group">
             <label for="selectedFile">Your file (maximum 50 MB)</label>
-            <%= file_field 'selectedFile', 'datafile', class:'form-control-file', :required=>true %>
+            <%= file_field 'selectedFile', 'datafile', class:'form-control-file', :required=>true,  onchange: "validateFiles(this);", data: { max_file_size: 50.megabytes } %>
           </div>
           <div class="form-group">
             <label for="passw1">Password</label>
