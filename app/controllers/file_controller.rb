@@ -68,8 +68,6 @@ class FileController < ApplicationController
         file, body = @dbx.download(file_path)
         send_data body.to_s, :filename => File.basename(fileItem.path)
     end
-    #redirect_to '/user/showFiles'
-
   end
 
   def uploadUserFile
@@ -178,8 +176,6 @@ protected
 
   def saveUserFile(upload)
     name = upload['datafile'].original_filename
-    directory = "public/data"
-    #start
     data = File.read(upload['datafile'].path)
     output = ''.bytes.to_a
     key = params[:passw1].bytes.to_a
@@ -193,11 +189,6 @@ protected
         index = 0
       end
     end
-    Dir.chdir("public/data/") do
-        File.open(name+ '.bin', "wb") { |f| f.write(output.pack('c*'))}
-        #  @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
-    end
-    #end
     directory = "/firstFolder/" + current_user.id.to_s + "/"
     path = File.join(directory, name + '.bin')
     @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
@@ -212,10 +203,7 @@ protected
     if findFolder == false
       @dbx.create_folder("/firstFolder/" + current_user.id.to_s)
     end
-    Dir.chdir("public/data/") do
-      @dbx.upload(path, File.read(name + '.bin')) #upload['datafile'].read
-    end
-
+    @dbx.upload(path, output.pack('c*'))     
     return path
   end
 
