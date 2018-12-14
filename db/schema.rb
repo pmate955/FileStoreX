@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_180358) do
+ActiveRecord::Schema.define(version: 2018_12_14_201335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_12_07_180358) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "status", default: "Uploaded", null: false
+    t.integer "downloadedNum", default: 0
     t.index ["user_id"], name: "index_file_items_on_user_id"
   end
 

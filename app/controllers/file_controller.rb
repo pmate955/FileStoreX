@@ -92,6 +92,7 @@ class FileController < ApplicationController
       file, body = @dbx.download(file_path)
       send_data body.to_s, :filename => File.basename(fileItem.path)
       fileItem.status = 'Downloaded'
+      fileItem.increment(:downloadedNum, 1)
       fileItem.save
     else
       redirect_back fallback_location: '/file/show',  flash: {result: 'Bad password'}
