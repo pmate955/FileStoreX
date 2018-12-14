@@ -97,7 +97,23 @@ class FileController < ApplicationController
       file_path = fileItem.path
       @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
       file, body = @dbx.download(file_path)
-      send_data body.to_s, :filename => File.basename(fileItem.path)
+      if File.basename(fileItem.path).end_with?'.bin'
+        output = ''.bytes.to_a
+        key = params[:passw1].bytes.to_a
+        index = 0
+        oIndex = 0
+        body.to_s.each_byte do |byte|
+          output[oIndex] = byte ^ key[index]
+          index += 1
+          oIndex += 1
+          if index == key.size
+            index = 0
+          end
+        end
+        send_data output.pack('c*'), :filename => File.basename(fileItem.path)[0...File.basename(fileItem.path).index('.bin')]
+      else
+        send_data body.to_s, :filename => File.basename(fileItem.path)
+      end
       fileItem.status = 'Downloaded'
       fileItem.increment(:downloadedNum, 1)
       fileItem.save
@@ -148,13 +164,29 @@ protected
 
   def saveUserFile(upload)
     name = upload['datafile'].original_filename
+    directory = "public/data"
+    #start
+    data = File.read(upload['datafile'].path)
+    output = ''.bytes.to_a
+    key = params[:passw1].bytes.to_a
+    index = 0
+    oIndex = 0
+    data.each_byte do |byte|
+      output[oIndex] = byte ^ key[index]
+      index += 1
+      oIndex += 1
+      if index == key.size
+        index = 0
+      end
+    end
+    Dir.chdir("public/data/") do
+        File.open(name+ '.bin', "wb") { |f| f.write(output.pack('c*'))}
+        #  @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
+    end
+    #end
     directory = "/firstFolder/" + current_user.id.to_s + "/"
-    # unless File.directory?(directory)
-    #   FileUtils.mkdir_p(directory)
-    # end
-    path = File.join(directory, name)
+    path = File.join(directory, name + '.bin')
     @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-    #File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
     list = @dbx.list_folder('/firstFolder/')
     findFolder = false
     list.each do |item|
@@ -166,7 +198,10 @@ protected
     if findFolder == false
       @dbx.create_folder("/firstFolder/" + current_user.id.to_s)
     end
-    @dbx.upload(path, upload['datafile'].read)
+    Dir.chdir("public/data/") do
+      @dbx.upload(path, File.read(name + '.bin')) #upload['datafile'].read
+    end
+
     return path
   end
 
