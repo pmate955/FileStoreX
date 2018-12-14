@@ -44,10 +44,17 @@ class FileController < ApplicationController
   end
 
   def downloadFile
-    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-    file, body = @dbx.download('/firstFolder/' + params[:filename])
-      send_data body.to_s, :filename => params[:filename]
-      @dbx.delete('/firstFolder/'+ params[:filename])
+    file_path = "#{Rails.root}/public/data/" + params[:filename]
+    # send_file "#{Rails.root}/public/data/" + params[:filename], type: "application/bin", x_sendfile: true
+    File.open(file_path, 'r') do |f|
+      send_data f.read, :filename => params[:filename]
+    end
+    File.delete(file_path)
+
+    # @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
+   # file, body = @dbx.download('/firstFolder/' + params[:filename])
+   #   send_data body.to_s, :filename => params[:filename]
+   #   @dbx.delete('/firstFolder/'+ params[:filename])
       #File.delete(file_path)
   end
 
@@ -128,12 +135,12 @@ protected
     Dir.chdir("public/data/") do
       if params[:isEncrypt] == '1'
         File.open(name+ '.bin', "wb") { |f| f.write(output.pack('c*'))}
-        @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
+      #  @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
       else
         index = name.index(".bin")
         name2 = name[0...index]
        File.open(name2, "wb") { |f| f.write(output.pack('c*'))}
-        @dbx.upload('/firstFolder/' + name2, File.read(name2))
+      #  @dbx.upload('/firstFolder/' + name2, File.read(name2))
       end
     end
     name + ".bin"
