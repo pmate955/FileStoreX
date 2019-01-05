@@ -11,5 +11,19 @@ class ApplicationController < ActionController::Base
       record.save
     end
     @stat = Statistic.find_by(dateTime: Date.today)
+    set_locale
   end
+
+    def default_url_options
+      { locale: I18n.locale }
+    end
+
+
+
+
+    def set_locale
+      I18n.locale = params[:locale] || session[:locale]         #lifehack
+      session[:locale] = I18n.locale
+      puts('At least stored')
+    end
 end

@@ -31,3 +31,24 @@
 
 en:
   hello: "Hello world"
+  form1:
+    what: "What do you want"
+    upl1: "Upload your file!"
+    pas1: "Password"
+    pas2: "Password again"
+    file: "Your selected file"
+    upl: "Upload"
+  form2:
+    encrypt: "Encrpyt"
+    decrypt: "Decrypt"
+  menu:
+    enc: "Encrypt/Decrypt"
+    upld: "Upload a file"
+    myf: "My files"
+    reg: "Registration"
+    log: "Login"
+    logo: "Logout"
+  home:
+    title: "Welcome to File Store X"
+    p1: "Free file sharing and encrypting tool. You can encrypt your files with basic XOR algoríthm and send wherever you want, like GMail, Facebook. The receiver member can decode the file with password. Register fo more features, like send messages."
+    pm: "You are now a member, so you can upload files, which are stay on the server until someone download them, and send messages"

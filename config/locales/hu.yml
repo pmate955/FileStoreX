@@ -1,0 +1,23 @@
+hu:
+  hello: "HSzia világ"
+  form1:
+    what: "Mit szeretnél csinálni?"
+    upl1: "Töltsd fel a fájlt!"
+    pas1: "Jelszó"
+    pas2: "Jelszó újra"
+    file: "A kiválasztott fájl"
+    upl: "Feltöltés"
+  form2:
+    encrypt: "Kódolás"
+    decrypt: "Dekódolás"
+  menu:
+    enc: "Kódolás/dekódolás"
+    upld: "Fájl feltöltése"
+    myf: "Fájlok listázása"
+    reg: "Regisztráció"
+    log: "Bejelentkezés"
+    logo: "Kijelentkezés"
+  home:
+    title: "Üdvözöllek a File Store X weboldalon!"
+    p1: "Ingyenes fájlmegosztó és titkosító oldal. Titkosítsd az adataidat XOR algoritmussal, és az elkészült bináris állományt bármelyik publikus platformon elküldheted. A fogadó fél ide feltöltve a jelszó ismeretében dekódolhatja a fájlt. Regisztrálj az extra funkciókért, mint fájlok tárolása, letöltőlink készítése!"
+    pm: "Regisztrált felhasználó vagy, tölsd fel a fájlokat az oldalra, küldj linket a célszemélynek! "

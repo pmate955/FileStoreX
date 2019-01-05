@@ -21,17 +21,14 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
         <ul class="navbar-nav m-auto">
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/file/upload">Encrpyt/Decrypt</a>
+            <a class="nav-link" href="/file/upload"><%=t('menu.enc') %></a>
           </li>
           <%if user_signed_in? %>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/file/uploadUserFile">Upload a file</a>
+            <a class="nav-link" href="/file/uploadUserFile"><%=t('menu.upld') %></a>
           </li>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/user/showFiles">My Files</a>
-          </li>
-          <li class="nav-item m-auto">
-            <a class="nav-link" href="/">Messages</a>
+            <a class="nav-link" href="/user/showFiles"><%=t('menu.myf') %></a>
           </li>
           <%end%>
         </ul>
@@ -41,24 +38,27 @@
         <ul class="navbar-nav m-auto">
           <%if !user_signed_in? %>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/users/sign_in">Login</a>
+            <a class="nav-link" href="/users/sign_in"><%=t('menu.log') %></a>
           </li>
           <li class="nav-item m-auto">
-            <a class="nav-link" href="/users/sign_up">Register</a>
+            <a class="nav-link" href="/users/sign_up"><%=t('menu.reg') %></a>
           </li>
           <%else%>
           <li class="nav-item m-auto">
-            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+            <%= link_to(t('menu.logo'), destroy_user_session_path, method: :delete, class: "nav-link" ) %>
           </li>
           <%end%>
+          <li class="nav-item ml-3 mr-2 mt-2">
+            <%= link_to(image_tag("english.png"),  :locale=>'en')  %>
+          </li>
+          <li class="nav-item m-auto">
+            <%= link_to(image_tag("hungarian.png"),  :locale=>'hu') %>
+          </li>
         </ul>
 
       </div>
     </div>
   </nav>
-
-
-
 
   <div class="container body-content">
     <br><br><br>
@@ -75,8 +75,5 @@
       </div>
     </footer>
   </div>
-
-
-
   </body>
 </html>

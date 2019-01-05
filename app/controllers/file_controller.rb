@@ -5,7 +5,6 @@ class FileController < ApplicationController
   @lines
 
 
-
   def upload
   end
 

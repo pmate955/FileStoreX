@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'file/show'
   post 'file/tryPass'
   get 'file/not_found'
+  get 'home/set_locale'
+  get 'users/home/set_locale', to: 'home#set_locale'
   get 'user/login'
   get 'user/register'
   get 'user/showFiles'
