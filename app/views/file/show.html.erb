@@ -1,15 +1,15 @@
 <div id="form-con" class = "container mt-2">
   <div class="row">
     <div class="col">
-      <h1 class="mx-auto my-0">Your file is ready to download!</h1>
+      <h1 class="mx-auto my-0"><%=t('show.ready') %></h1>
       <%= form_tag("/file/tryPass", method: "post") do %>
           <%= hidden_field_tag 'file_id', @file_id  %>
           <div class="form-group">
-            <label for="passw1">Password</label>
+            <label for="passw1"><%=t('form1.pas1') %></label>
             <%= password_field_tag 'passw1',nil,  class:'form-control', :required=>true %>
           </div>
           <div class="form-group">
-            <%= submit_tag("OK",class: "btn btn-primary" ) %>
+            <%= submit_tag(t('files.down2'),class: "btn btn-primary" ) %>
           </div>
           <% flash.each do |key, value| %>
               <div class="alert alert-danger" role="alert">

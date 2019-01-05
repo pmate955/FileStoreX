@@ -1,14 +1,14 @@
 <div class="col-md-12">
-  <h4>My Files</h4>
+  <h4><%=t('files.myFiles') %></h4>
   <div class="table-responsive">
     <table id="mytable" class="table table-bordred table-striped">
       <thead>
-        <th>File name</th>
-        <th>Password</th>
-        <th>Downloaded</th>
+        <th><%= t('files.fName') %></th>
+        <th><%= t('form1.pas1') %></th>
+        <th><%= t('files.stat') %></th>
         <th>URL</th>
-        <th>Download encrypted</th>
-        <th>Delete</th>
+        <th><%=t('files.down') %></th>
+        <th><%=t('files.delete') %></th>
       </thead>
       <tbody>
         <% @list.each do |l| %>
@@ -21,19 +21,19 @@
             </td>
             <td><%=l.password%></td>
             <td><% if l.downloadedNum > 0 %>
-                    <%=l.status%> <%=l.downloadedNum%> times
+                    <%=l.status%> <%=l.downloadedNum%> <%=t('files.times') %>
                 <%else%>
                     <%=l.status%>
                 <%end%>
             </td>
-            <td><%= link_to 'Link to file', {:controller => "file", :action => "show", :file_id => l.id}%></td>
+            <td><%= link_to 'Link', {:controller => "file", :action => "show", :file_id => l.id}%></td>
             <td><%if l.path.end_with?'.bin'%>
-                    <%= button_to 'Download', {:controller => "file", :action => "downloadEnc",:file_id => l.id, :user_id=> session[:user_id]} , method: :post%>
+                    <%= button_to t('files.down2'), {:controller => "file", :action => "downloadEnc",:file_id => l.id, :user_id=> session[:user_id]} , method: :post%>
                 <%else%>
                     <p>Not available for old files</p>
                 <%end%>
             </td>
-            <td><%= button_to 'Delete', {:controller => "file", :action => "deleteFile", :file_id => l.id, :user_id=> session[:user_id]} , method: :post%></td>
+            <td><%= button_to t('files.delete'), {:controller => "file", :action => "deleteFile", :file_id => l.id, :user_id=> session[:user_id]} , method: :post%></td>
           </tr>
         <%end%>
       </tbody>

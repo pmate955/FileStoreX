@@ -129,7 +129,7 @@ class FileController < ApplicationController
       fileItem.increment(:downloadedNum, 1)
       fileItem.save
     else
-      redirect_back fallback_location: '/file/show',  flash: {result: 'Bad password'}
+      redirect_back fallback_location: '/file/show',  flash: {result: t('show.badpass')}
     end
   end
 

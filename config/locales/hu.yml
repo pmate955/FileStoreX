@@ -10,6 +10,15 @@ hu:
   form2:
     encrypt: "Kódolás"
     decrypt: "Dekódolás"
+  files:
+    myFiles: "Tárolt fájlok"
+    fName: "Fájl neve"
+    stat: "Státusz"
+    down: "Kódolt fájl letöltése"
+    down2: "Letöltés"
+    delete: "Törlés"
+    downloaded: "Letöltve"
+    times: "alkalommal"
   menu:
     enc: "Kódolás/dekódolás"
     upld: "Fájl feltöltése"
@@ -20,4 +29,41 @@ hu:
   home:
     title: "Üdvözöllek a File Store X weboldalon!"
     p1: "Ingyenes fájlmegosztó és titkosító oldal. Titkosítsd az adataidat XOR algoritmussal, és az elkészült bináris állományt bármelyik publikus platformon elküldheted. A fogadó fél ide feltöltve a jelszó ismeretében dekódolhatja a fájlt. Regisztrálj az extra funkciókért, mint fájlok tárolása, letöltőlink készítése!"
-    pm: "Regisztrált felhasználó vagy, tölsd fel a fájlokat az oldalra, küldj linket a célszemélynek! "
+    pm: "Regisztrált felhasználó vagy, tölsd fel a fájlokat az oldalra, küldj linket a célszemélynek! 5 fájlt tárolhatsz az oldalon, melyek 50 MB méretűek lehetnek legfeljebb. Letöltheted a titkosított fájlt is. "
+  not_found:
+    title: "A keresett fájl nem található a szerveren."
+    content: "Elírhatta az elérési útvonalat, vagy a fájl törölve lett a szerverről."
+  show:
+    ready: "A fájl készen áll a letöltésre!"
+    badpass: "Rossz jelszó"
+  conv:
+    title: "A fájlod átalakítása elkészült!"
+    content: "Kattints a letöltéshez a linkre. Az adataid ezután törlődnek a szerverről. :)"
+  register:
+    free: "Ingyenes :)"
+    firstName: "Keresztnév"
+    lastName: "Vezetéknév"
+    email: "Email cím"
+    sign_up: "Regisztrálok"
+  login:
+    rem: "Jegyezz meg"
+    login: "Belépés"
+    forg: "Elfelejtett jelszó?"
+    didnt: "Nem kaptad meg a visszaigazolást?"
+  activerecord:
+    attributes:
+      user:
+        remember_me: "Jegyezz meg!"
+  deviseThings:
+    resend: "Megerősítő email újraküldése"
+    forg: "Elfelejtetted a jelszavadat?"
+    forg2: "Küldd el nekem az instrukciókat!"
+  footer:
+    have: "Jelenleg"
+    users: "regisztrált felhasználónk van! Oldalletöltések száma mai nap:"
+    new: "Ma regisztrált felhasználók:"
+    visit: "Belépések száma ma:"
+  email:
+    welcome: "Üdvözöllek"
+    content: "Az alábbi linken megerősítheted a regisztrációdat:"
+    link: "Megerősítem a regisztrációt"

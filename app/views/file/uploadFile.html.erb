@@ -1,9 +1,9 @@
 <div id="form-con" class = "container mt-2">
   <div class="row">
     <div class="col">
-      <h1 class="mx-auto my-0">Your file is converted! </h1>
-      <p>Click to the download button! The file will be deleted after 10 minutes!</p>
-      <%= link_to "download", download_path(filename: @value), target: "_blank"%>
+      <h1 class="mx-auto my-0"><%=t('conv.title') %> </h1>
+      <p><%=t('conv.content') %></p>
+      <%= link_to t('files.down2'), download_path(filename: @value), target: "_blank"%>
     </div>
   </div>
 </div>

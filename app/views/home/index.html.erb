@@ -11,5 +11,12 @@
         <a href="/file/upload" class="btn btn-primary js-scroll-trigger"><%=t('menu.upld') %></a>
       <%end%>
     </div>
+
   </div>
+
   </header>
+<% flash.each do |key, value| %>
+    <div class="alert alert-info" role="alert">
+      <%= value %>
+    </div>
+<% end %>

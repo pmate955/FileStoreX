@@ -36,6 +36,8 @@ hu:
       inactive_signed_up: 'Sikeres regisztráció, azonban még a bejelentkezés nem lehetséges, mert a felhasználói fiók %{reason}.'
       updated: 'Sikeres fiók módosítás.'
       destroyed: 'Felhasználói fiók törölve. Reméljük, még visszatér hozzánk.'
+      user:
+        signed_up_but_unconfirmed: 'Elküldtük az email címedre a megerősítő emailt!'
     unlocks:
       send_instructions: 'Hamarosan a megadott címre érkezik egy email a fiók zárolásának megszüntetésével kapcsolatban.'
       unlocked: 'A felhasználói fiók zárolása megszűnt. Bejelentkezve a felhasználói fiókba.'

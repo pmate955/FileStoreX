@@ -41,6 +41,15 @@ en:
   form2:
     encrypt: "Encrpyt"
     decrypt: "Decrypt"
+  files:
+    myFiles: "My Files"
+    fName: "File name"
+    stat: "Status"
+    down: "Download encrypted"
+    down2: "Download"
+    delete: "Delete"
+    downloaded: "Downloaded"
+    times: "times"
   menu:
     enc: "Encrypt/Decrypt"
     upld: "Upload a file"
@@ -51,4 +60,37 @@ en:
   home:
     title: "Welcome to File Store X"
     p1: "Free file sharing and encrypting tool. You can encrypt your files with basic XOR algoríthm and send wherever you want, like GMail, Facebook. The receiver member can decode the file with password. Register fo more features, like send messages."
-    pm: "You are now a member, so you can upload files, which are stay on the server until someone download them, and send messages"
+    pm: "You are now a member, so you can upload files, which are stay on the server until someone download them. You can store 5 files on the server, and send the link anywhere. "
+  not_found:
+    title: "The file you were looking for doesn't exist."
+    content: "You may have mistyped the address or the page may have moved"
+  show:
+    ready: "Your file is ready to download!"
+    badpass: "Bad password"
+  conv:
+    title: "Your file is converted!"
+    content: "Click to the download button! The file will be deleted from server! :)"
+  register:
+    free: "It's free"
+    firstName: "First name"
+    lastName: "Last name"
+    email: "Email"
+    sign_up: "Sign up"
+  login:
+    rem: "Remember me"
+    login: "Log in"
+    forg: "Forgot your password?"
+    didnt: "Didn't receive confirmation instructions?"
+  deviseThings:
+    resend: "Resend confirmation instructions"
+    forg: "Forgot your password?"
+    forg2: "Send me the instructions!"
+  footer:
+    have: "We have"
+    users: "users now! Page loads today:"
+    new: "New users today:"
+    visit: "User visits"
+  email:
+    welcome: "Welcome"
+    content: "You can confirm your account email through the link below:"
+    link: "Confirm my account"

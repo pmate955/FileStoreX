@@ -18,9 +18,6 @@ class ApplicationController < ActionController::Base
       { locale: I18n.locale }
     end
 
-
-
-
     def set_locale
       I18n.locale = params[:locale] || session[:locale]         #lifehack
       session[:locale] = I18n.locale
