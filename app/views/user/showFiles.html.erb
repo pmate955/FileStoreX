@@ -3,6 +3,7 @@
   <div class="table-responsive">
     <table id="mytable" class="table table-bordred table-striped">
       <thead>
+        <th>ID</th>
         <th><%= t('files.fName') %></th>
         <th><%= t('form1.pas1') %></th>
         <th><%= t('files.stat') %></th>
@@ -13,6 +14,7 @@
       <tbody>
         <% @list.each do |l| %>
           <tr>
+            <td><%=l.id%></td>
             <td><%if l.path.end_with?'.bin'%>
                   <%=File.basename(l.path)[0...File.basename(l.path).index('.bin')] %>
                 <%else%>
