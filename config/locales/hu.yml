@@ -1,5 +1,7 @@
 hu:
   hello: "HSzia világ"
+  search: "Keresés"
+  searchID: "Fájl keresése ID alapján"
   form1:
     what: "Mit szeretnél csinálni?"
     upl1: "Töltsd fel a fájlt!"

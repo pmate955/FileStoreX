@@ -33,8 +33,20 @@
           <%end%>
         </ul>
 
+        <%= form_tag("/file/searchFile", method: "post", class: "card card-lg bg-transparent") do %>
+          <div class="card-body row no-gutters align-items-center">
+            <!--end of col-->
+            <div class="col">
+              <input name="searchedID" class="form-control form-control-sm" style="height: 30px" type="search" placeholder=" <%=t('searchID')%>">
+            </div>
+            <!--end of col-->
+            <div class="col-auto">
+              <button class="btn btn-sm btn-success" style="height: 30px" type="submit"><%=t('search')%></button>
+            </div>
+            <!--end of col-->
+          </div>
 
-
+        <%end%>
         <ul class="navbar-nav m-auto">
           <%if !user_signed_in? %>
           <li class="nav-item m-auto">
@@ -61,7 +73,7 @@
   </nav>
 
   <div class="container body-content">
-    <br><br><br>
+    <br><br><br><br><br>
     <%= yield %>
     <hr />
     <footer class="page-footer font-small cyan darken-3">

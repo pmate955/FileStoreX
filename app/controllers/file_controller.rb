@@ -100,6 +100,17 @@ class FileController < ApplicationController
 
   end
 
+  def searchFile
+    puts(params[:searchedID])
+    if FileItem.exists?(params[:searchedID])
+      redirect_to :controller => 'file', :action => 'show', :file_id => params[:searchedID]
+
+    else
+      redirect_to '/file/not_found'
+    end
+
+  end
+
   def tryPass
     unless fileItem = FileItem.find(params[:file_id])
       redirect_to '/file/not_found'

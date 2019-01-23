@@ -24,7 +24,7 @@ footer {
   color:white;
 }
 .container { background: rgba(164,159,159,0.7); color: black;}
-.navbar { background: #ffffff;}
+.navbar { background: #aaaa00;}
 .pages .pagination>li>a,
 .pages .pagination>li>span {
   border: 1px solid purple;
@@ -32,6 +32,10 @@ footer {
   color: white;
 }
 
+head#search-thing{
+  background-color:#f47443;
+  color:white;
+}
 body#LoginForm{ background-image:url("wall.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 
 .form-heading { color:#fff; font-size:23px;}

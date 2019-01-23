@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'file/downloadEnc'
   get 'file/show'
   post 'file/tryPass'
+  post 'file/searchFile'
   get 'file/not_found'
   get 'home/set_locale'
   get 'users/home/set_locale', to: 'home#set_locale'

@@ -31,6 +31,8 @@
 
 en:
   hello: "Hello world"
+  search: "Search"
+  searchID: "Search file by ID"
   form1:
     what: "What do you want"
     upl1: "Upload your file!"
