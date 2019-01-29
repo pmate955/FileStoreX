@@ -1,5 +1,7 @@
 # File Store X
 
+The application is deployed to heroku. https://filestorex.herokuapp.com/
+
 Small Ruby on Rails app for an online file encryptor with XOR coding. (This will be updated soon with better
 encrypting algorythm)
 There are 2 options:
