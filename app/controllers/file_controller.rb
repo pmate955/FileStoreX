@@ -11,10 +11,7 @@ class FileController < ApplicationController
 
 
   def uploadFile
-    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-   # folder = @dbx.create_folder('/firstFolder')
-   # @dbx.upload('/firstFolder/' + params[:selectedFile]['datafile'].original_filename, params[:selectedFile]['datafile'].read)
-    if params[:passw1] == params[:passw2]
+   if params[:passw1] == params[:passw2]
       if params[:isEncrypt] == '1'
        @value = saveFile(params[:selectedFile])
       else
@@ -49,12 +46,6 @@ class FileController < ApplicationController
       send_data f.read, :filename => params[:filename]
     end
     File.delete(file_path)
-
-    # @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-   # file, body = @dbx.download('/firstFolder/' + params[:filename])
-   #   send_data body.to_s, :filename => params[:filename]
-   #   @dbx.delete('/firstFolder/'+ params[:filename])
-      #File.delete(file_path)
   end
 
   def downloadEnc
@@ -63,8 +54,9 @@ class FileController < ApplicationController
     end
     file_path = fileItem.path
     if file_path.end_with?'.bin'
-        @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-        file, body = @dbx.download(file_path)
+        session = GoogleDrive::Session.from_config("config.json")
+        file = session.file_by_title([fileItem.user_id.to_s, File.basename(file_path) ])
+        body = file.download_to_string
         send_data body.to_s, :filename => File.basename(fileItem.path)
     end
   end
@@ -78,7 +70,6 @@ class FileController < ApplicationController
       redirect_back fallback_location: '/file/uploadUserFile',  flash: {result: 'You exceeded the file limit, maximum 5 files / user!'}
     end
     if params[:passw1] == params[:passw2]
-      @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
       path = saveUserFile(params[:selectedFile])
       fileItem = FileItem.new(:path => path, :password => params[:passw1], :user_id => current_user.id)
       fileItem.save()
@@ -90,8 +81,9 @@ class FileController < ApplicationController
 
   def deleteFile
     fileItem = FileItem.find(params[:file_id])
-    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-    @dbx.delete(fileItem.path)
+    session = GoogleDrive::Session.from_config("config.json")
+    file = session.file_by_title([fileItem.user_id.to_s, File.basename(fileItem.path) ])
+    file.delete(true)
     fileItem.delete
     redirect_to '/user/showFiles'
   end
@@ -104,7 +96,6 @@ class FileController < ApplicationController
     puts(params[:searchedID])
     if FileItem.exists?(params[:searchedID])
       redirect_to :controller => 'file', :action => 'show', :file_id => params[:searchedID]
-
     else
       redirect_to '/file/not_found'
     end
@@ -117,8 +108,9 @@ class FileController < ApplicationController
     end
     if fileItem.password == params[:passw1]
       file_path = fileItem.path
-      @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-      file, body = @dbx.download(file_path)
+      session = GoogleDrive::Session.from_config("config.json")
+      file = session.file_by_title([fileItem.user_id.to_s, File.basename(file_path) ])
+      body = file.download_to_string
       if File.basename(fileItem.path).end_with?'.bin'
         output = ''.bytes.to_a
         key = params[:passw1].bytes.to_a
@@ -173,12 +165,10 @@ protected
     Dir.chdir("public/data/") do
       if params[:isEncrypt] == '1'
         File.open(name+ '.bin', "wb") { |f| f.write(output.pack('c*'))}
-      #  @dbx.upload('/firstFolder/' + name + ".bin", File.read(name + '.bin'))
       else
         index = name.index(".bin")
         name2 = name[0...index]
        File.open(name2, "wb") { |f| f.write(output.pack('c*'))}
-      #  @dbx.upload('/firstFolder/' + name2, File.read(name2))
       end
     end
     name + ".bin"
@@ -199,21 +189,20 @@ protected
         index = 0
       end
     end
-    directory = "/firstFolder/" + current_user.id.to_s + "/"
+    directory =  current_user.id.to_s + "/"
     path = File.join(directory, name + '.bin')
-    @dbx = Dropbox::Client.new('weix-inyuvAAAAAAAAAADZEZVWLlf4RvDREOjiZCBGS-Hd3bAO0AU6dPPDeY9ocp')
-    list = @dbx.list_folder('/firstFolder/')
-    findFolder = false
-    list.each do |item|
-      if item.name == current_user.id.to_s
-        findFolder = true
-        break
+
+    Dir.chdir("public/data/") do
+      File.open(name+ '.bin', "wb") { |f| f.write(output.pack('c*'))}
+      session = GoogleDrive::Session.from_config("config.json")
+      unless session.collection_by_title(current_user.id.to_s)
+        session.root_collection.create_subcollection(current_user.id.to_s)
       end
+      file = session.upload_from_file(name+ '.bin', name+ '.bin', convert: false)
+      search_folder = session.collection_by_title(current_user.id.to_s)
+      search_folder.add(file);
     end
-    if findFolder == false
-      @dbx.create_folder("/firstFolder/" + current_user.id.to_s)
-    end
-    @dbx.upload(path, output.pack('c*'))     
+
     return path
   end
 

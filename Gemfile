@@ -16,6 +16,7 @@ gem 'pg'
 #gem 'hit_counter'
 #dropbox sdk
 gem 'dropbox-sdk-v2'
+gem 'google_drive'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
