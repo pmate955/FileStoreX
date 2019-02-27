@@ -8,7 +8,7 @@ hu:
       already_confirmed: "már meg van erősítve"
       not_locked: "nincs zárolva"
       not_saved:
-        one: "1 hiba miatt %{resource} mentése nem lehetséges:"
+        one: "Egy hiba miatt %{resource} mentése nem lehetséges:"
         other: "%{count} hiba miatt %{resource} mentése nem lehetésges:"
 
   devise:

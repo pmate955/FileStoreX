@@ -53,6 +53,12 @@ hu:
     forg: "Elfelejtett jelszó?"
     didnt: "Nem kaptad meg a visszaigazolást?"
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "A jelszó túl rövid. Legalább 6 karakter!"
     attributes:
       user:
         remember_me: "Jegyezz meg!"

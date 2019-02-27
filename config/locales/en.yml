@@ -56,12 +56,12 @@ en:
     enc: "Encrypt/Decrypt"
     upld: "Upload a file"
     myf: "My files"
-    reg: "Registration"
+    reg: "Sign up"
     log: "Login"
     logo: "Logout"
   home:
     title: "Welcome to File Store X"
-    p1: "Free file sharing and encrypting tool. You can encrypt your files with basic XOR algoríthm and send wherever you want, like GMail, Facebook. The receiver member can decode the file with password. Register fo more features, like send messages."
+    p1: "Free file sharing and encrypting tool. You can encrypt your files with basic XOR algoríthm and send wherever you want, like GMail, Facebook. The receiver member can decode the file with password. Sign up for more features, like store 5 files on server, and send download link."
     pm: "You are now a member, so you can upload files, which are stay on the server until someone download them. You can store 5 files on the server, and send the link anywhere. "
   not_found:
     title: "The file you were looking for doesn't exist."
